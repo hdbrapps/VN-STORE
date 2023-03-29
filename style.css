@@ -184,20 +184,14 @@ body {
   cursor: none;
 }
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .app-container {
     display: inline-block;
-    width: 45%;
-    margin: 10px;
-  }
-  
-  .app-container img {
     width: 100%;
-    height: auto;
-  }
-  
-  .app-container h3 {
-    font-size: 0.8em;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 10px;
   }
 }
 
