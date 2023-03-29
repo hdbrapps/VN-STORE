@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6387/6387522.png" type="image/x-icon">
+    <title>Vn Store</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body id="app-store">
+
+    <audio id="audio" src="/audio/X2Download.app - Xbox One Notification Sound (128 kbps).mp3"></audio>
+    <div id="controle-remoto"></div>
+    <header>
+      <h1>Apps para Tv Box</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Apps Recentes</h2>
+
+        <div class="app-container">
+          <img src="https://i0.wp.com/youcinebrasil.com.br/wp-content/uploads/2022/08/Youcine01-2.png?fit=10241024&ssl=1" alt="App 1">
+          <h3>Youcine TV BOX</h3>
+          <button class="download-button" data-url="https://app.youcine.vip/app/cinetv_oficialsite.apk">Baixar</button>
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="app-container">
+          <img src="https://image.winudf.com/v2/image1/Y29tLmV4cHJlc3N0di50dl9zY3JlZW5fM18xNjEwNDg0NzQyXzAyMQ/screen-3.jpg?fakeurl=1&type=.webp" alt="App 2">
+          <h3>Tv Express TV BOX</h3>
+          <a href="https://bit.ly/TVEBRstb310" class="download-button">Baixar</a>
+
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="app-container">
+          <img src="https://imag.malavida.com/mvimgbig/download-fs/smarttube-next-29670-0.jpg" alt="App 2">
+          <h3>Youtube Premium</h3>
+          <a href="https://app.youcine.vip/app/cinetv_oficialsite.apk" class="download-button">Baixar</a>
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ultilidades</h2>
+
+        <div class="app-container">
+          <img src="https://euhtmods.com/wp-content/uploads/2023/02/central-iptv-mod-apk.jpg" alt="App 3">
+          <h3>Central Tv</h3>
+          <a href="https://app.youcine.vip/app/cinetv_oficialsite.apk" class="download-button">Baixar</a>
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="app-container">
+          <img src="https://lh3.googleusercontent.com/g5Q7f0InNJ1byH_VR2VrmlQnEzIgaXFVQNvkJRth0Cecg7W_dIY6E0CGEXAxKxr0Zdg" alt="App 4">
+          <h3>My Family Cinema</h3>
+          <a href="https://rebrand.ly/downloadMFCbox" class="download-button">Baixar</a>
+
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Smart TV App Store</p>
+    </footer>
+<script>
+ const downloadButtons = document.querySelectorAll('.download-button');
+downloadButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const url = button.getAttribute('data-url');
+    const fileName = url.split('/').pop();
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.onload = () => {
+      const a = document.createElement('a');
+      a.href = window.URL.createObjectURL(xhr.response);
+      a.download = fileName;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(a.href);
+      document.body.removeChild(a);
+      // Abre o aplicativo após o download ser concluído
+      window.location.href = "app://" + fileName;
+    };
+    xhr.onprogress = (event) => {
+      const progress = (event.loaded / event.total) * 100;
+      const progressBar = button.parentNode.querySelector('.progress-bar');
+      progressBar.style.width = `${progress}%`;
+      if (progress === 100) {
+        button.textContent = 'Instalar';
+      }
+    };
+    xhr.send();
+  });
+});
+
+</script>
+    <script src="script.js"></script>
+  </body>
+</html>
